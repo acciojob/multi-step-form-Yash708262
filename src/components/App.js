@@ -3,6 +3,7 @@ import Step from './Step';
 
 const App = () => {
     const [currentStep, setCurrentStep] = useState(1);
+
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -12,42 +13,59 @@ const App = () => {
         expiry_date: ''
     });
 
-    // Function to handle input changes
+    // Handle input changes
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setFormData({ ...formData, [id]: value });
+        setFormData((prev) => ({
+            ...prev,
+            [id]: value
+        }));
     };
 
-    // Function to go to the next step
+    // ✅ FIXED (important)
     const nextStep = () => {
-        setCurrentStep(currentStep + 1);
+        setCurrentStep((prev) => prev + 1);
     };
 
-    // Function to go to the previous step
     const prevStep = () => {
-        setCurrentStep(currentStep - 1);
+        setCurrentStep((prev) => prev - 1);
     };
 
-    // Function to handle form submission
+    // Submit
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData); // Here you can handle the submission (e.g., send to server)
+        console.log(formData);
     };
 
     return (
         <div>
             <h1>Multi-Step Form</h1>
+
             <form onSubmit={handleSubmit}>
                 <Step
                     step={currentStep}
                     formData={formData}
                     handleChange={handleChange}
-                    nextStep={nextStep}
-                    prevStep={prevStep}
                 />
-                {currentStep < 3 && <button type="button" onClick={nextStep}>Next</button>}
-                {currentStep > 1 && <button type="button" onClick={prevStep}>Previous</button>}
-                {currentStep === 3 && <button type="submit">Submit</button>}
+
+                {/* ✅ IMPORTANT: text must match Cypress */}
+                {currentStep < 3 && (
+                    <button type="button" onClick={nextStep}>
+                        Next
+                    </button>
+                )}
+
+                {currentStep > 1 && (
+                    <button type="button" onClick={prevStep}>
+                        Previous
+                    </button>
+                )}
+
+                {currentStep === 3 && (
+                    <button type="submit">
+                        Submit
+                    </button>
+                )}
             </form>
         </div>
     );
