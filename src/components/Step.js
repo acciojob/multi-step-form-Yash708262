@@ -4,7 +4,7 @@ const Step = ({ step, formData, handleChange }) => {
     switch (step) {
         case 1:
             return (
-                <div>
+                <div id='step1'>
                     <h2>Step 1: Personal Information</h2>
                     <label>
                         First Name:
@@ -28,7 +28,7 @@ const Step = ({ step, formData, handleChange }) => {
             );
         case 2:
             return (
-                <div>
+                <div id='step2'>
                     <h2>Step 2: Car Information</h2>
                     <label>
                         Car Model:
@@ -52,7 +52,7 @@ const Step = ({ step, formData, handleChange }) => {
             );
         case 3:
             return (
-                <div>
+                <div id='step3'>
                     <h2>Step 3: Payment Information</h2>
                     <label>
                         Card Information:
