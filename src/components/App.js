@@ -50,13 +50,13 @@ const App = () => {
 
                 {/* ✅ IMPORTANT: text must match Cypress */}
                 {currentStep < 3 && (
-                    <button type="button" onClick={nextStep}>
+                    <button type="button" onClick={nextStep} id="next">
                         Next
                     </button>
                 )}
 
                 {currentStep > 1 && (
-                    <button type="button" onClick={prevStep}>
+                    <button type="button" onClick={prevStep} id="back">
                         Previous
                     </button>
                 )}
